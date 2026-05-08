@@ -38,6 +38,18 @@ The notebook writes generated tables to `data/revised/`, figures to `visualizati
 
 The repository deploys as a static site through `.github/workflows/static.yml`. The root `index.html` links to the interactive atlas, final notebook, visualizations, and report.
 
+Deployed site:
+
+```text
+https://jialinsun-berkeley.github.io/Unequal-urban-nature-NYC/
+```
+
+Interactive atlas:
+
+```text
+https://jialinsun-berkeley.github.io/Unequal-urban-nature-NYC/src/atlas/
+```
+
 For local testing, do not open `index.html` or `src/atlas/index.html` directly from the file system. The atlas loads GeoJSON with `fetch()`, so it needs an HTTP server:
 
 ```bash
