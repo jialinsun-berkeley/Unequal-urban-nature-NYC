@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Street-Tree Ecological Inequality in New York City</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="atlas-shell">
+      <section class="map-stage" aria-label="Street-tree ecological inequality interactive atlas">
+        <div id="map" aria-hidden="true"></div>
+        <div id="tooltip" class="deck-tooltip" hidden></div>
+
+        <aside class="control-panel">
+          <div class="masthead">
+            <p class="eyebrow">NYC Street Tree Research</p>
+            <h1>Street-Tree Ecological Inequality in New York City</h1>
+            <p class="subtitle">
+              An interactive tract-level atlas of tree health, tree density, species diversity,
+              built-environment pressure, social vulnerability, and composite co-burden.
+            </p>
+          </div>
+
+          <section class="panel-section" aria-labelledby="layer-groups-title">
+            <div class="section-head">
+              <h2 id="layer-groups-title">Atlas layers</h2>
+            </div>
+
+            <div class="layer-section">
+              <h3>Composite Burden</h3>
+              <button class="layer-button active" data-layer="co_burden">
+                <span>Composite co-burden index</span>
+              </button>
+            </div>
+
+            <div class="layer-section">
+              <h3>Priority Tracts</h3>
+              <button class="layer-button" data-layer="priority">
+                <span>Priority intervention tracts</span>
+              </button>
+            </div>
+
+            <div class="layer-section">
+              <h3>Single-Burden Layers</h3>
+              <button class="layer-button" data-layer="low_street_tree">
+                <span>Low street-tree quality burden</span>
+              </button>
+              <button class="layer-button" data-layer="high_svi">
+                <span>High social vulnerability burden</span>
+              </button>
+              <button class="layer-button" data-layer="high_built">
+                <span>High built-environment intensity burden</span>
+              </button>
+              <button class="layer-button" data-layer="high_fragmentation">
+                <span>High landscape fragmentation burden</span>
+              </button>
+            </div>
+
+            <div class="layer-section">
+              <h3>LISA Clusters</h3>
+              <button class="layer-button" data-layer="lisa_health">
+                <span>LISA: Tree Health Index</span>
+              </button>
+              <button class="layer-button" data-layer="lisa_density">
+                <span>LISA: Street Tree Density</span>
+              </button>
+              <button class="layer-button" data-layer="lisa_diversity">
+                <span>LISA: Species Diversity</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="panel-section" aria-labelledby="map-context-title">
+            <div class="section-head">
+              <h2 id="map-context-title">Map context</h2>
+            </div>
+            <button id="reset-view" class="utility-button">Reset view</button>
+            <label class="toggle-row">
+              <input type="checkbox" id="toggle-buildings" checked />
+              <span>Show 3D buildings</span>
+            </label>
+            <label class="toggle-row">
+              <input type="checkbox" id="toggle-tracts" checked />
+              <span>Show tract outlines</span>
+            </label>
+          </section>
+
+          <section class="panel-section" aria-labelledby="legend-title">
+            <div class="section-head">
+              <h2 id="legend-title">Legend</h2>
+            </div>
+            <div id="legend" class="legend"></div>
+          </section>
+
+          <p id="status-note" class="status-note">Hover to inspect a tract. Click to pin tract details.</p>
+        </aside>
+
+        <aside class="info-stack" aria-label="Map summary and tract details">
+          <section class="info-card summary-card">
+            <h2>Map summary</h2>
+            <dl class="metric-grid">
+              <div>
+                <dt id="tract-count">-</dt>
+                <dd>All tracts</dd>
+              </div>
+              <div>
+                <dt id="included-count">-</dt>
+                <dd>Included sample</dd>
+              </div>
+              <div>
+                <dt id="priority-count">-</dt>
+                <dd>Top 20%</dd>
+              </div>
+              <div>
+                <dt id="high-priority-count">-</dt>
+                <dd>Top 10%</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="info-card note-card">
+            <p class="card-label">Layer note</p>
+            <h3 id="active-layer-title">Composite co-burden index</h3>
+            <p id="layer-note" class="layer-note"></p>
+          </section>
+
+          <section class="info-card detail-card">
+            <div class="detail-head">
+              <div>
+                <p class="card-label">Pinned selection</p>
+                <h3>Selected tract</h3>
+              </div>
+              <button id="clear-selection" class="clear-button" type="button" hidden>Clear</button>
+            </div>
+
+            <div id="selection-empty" class="selection-empty">
+              Click a tract to pin detailed burden and priority information.
+            </div>
+
+            <div id="selection-content" class="selection-content" hidden>
+              <p id="selected-tract-title" class="selected-tract-title"></p>
+              <dl id="detail-list" class="detail-list"></dl>
+            </div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/deck.gl@9.0.35/dist.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
