@@ -10,110 +10,209 @@
         --muted: #5f5a53;
         --line: #dedbd3;
         --paper: #fbfaf7;
+        --panel: #ffffff;
+        --soft: #f1ede5;
         --accent: #8f3d31;
+        --green: #2f6f55;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
       body {
         margin: 0;
         background: var(--paper);
         color: var(--ink);
         font-family: Aptos, "Segoe UI", Arial, sans-serif;
+        line-height: 1.55;
       }
-
-      main {
-        width: min(1040px, calc(100% - 40px));
-        margin: 0 auto;
-        padding: 56px 0;
+      a { color: inherit; }
+      .page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+      header { padding: 56px 0 34px; border-bottom: 1px solid var(--line); }
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
-
       h1 {
-        max-width: 780px;
-        margin: 0 0 14px;
-        font-size: clamp(34px, 6vw, 68px);
-        line-height: 1;
+        max-width: 900px;
+        margin: 0 0 16px;
+        font-size: clamp(38px, 7vw, 76px);
+        line-height: 0.98;
         letter-spacing: 0;
       }
-
-      .subtitle {
-        max-width: 760px;
-        margin: 0 0 34px;
-        color: var(--muted);
-        font-size: 18px;
-        line-height: 1.5;
-      }
-
-      .links {
+      .subtitle { max-width: 850px; margin: 0; color: var(--muted); font-size: 19px; }
+      .top-links {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
         gap: 14px;
         margin-top: 30px;
       }
-
-      a {
-        color: inherit;
-      }
-
       .link-card {
         display: block;
-        min-height: 132px;
+        min-height: 128px;
         padding: 18px;
         border: 1px solid var(--line);
-        background: white;
+        background: var(--panel);
         text-decoration: none;
       }
-
-      .link-card strong {
-        display: block;
-        margin-bottom: 9px;
-        color: var(--accent);
-        font-size: 18px;
+      .link-card strong { display: block; margin-bottom: 8px; color: var(--accent); font-size: 18px; }
+      .link-card span { color: var(--muted); }
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        margin: 0 calc((100vw - min(1120px, calc(100vw - 40px))) / -2);
+        padding: 10px max(20px, calc((100vw - 1120px) / 2));
+        border-bottom: 1px solid var(--line);
+        background: rgba(251, 250, 247, 0.94);
+        backdrop-filter: blur(10px);
       }
-
-      .link-card span {
-        color: var(--muted);
-        line-height: 1.45;
-      }
-
-      .meta {
-        margin-top: 42px;
-        padding-top: 18px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 14px;
+      nav a { display: inline-block; margin: 4px 18px 4px 0; color: var(--muted); font-size: 14px; text-decoration: none; }
+      section { padding: 46px 0; border-bottom: 1px solid var(--line); }
+      .section-grid { display: grid; grid-template-columns: minmax(190px, 0.32fr) minmax(0, 1fr); gap: 38px; }
+      h2 { margin: 0; font-size: 30px; line-height: 1.1; }
+      h3 { margin: 0 0 10px; font-size: 18px; }
+      p { margin: 0 0 16px; }
+      ul { margin: 0 0 18px; padding-left: 20px; }
+      li { margin-bottom: 8px; }
+      .lead { color: #3f3a35; font-size: 18px; }
+      .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 24px 0 6px; }
+      .stat, .method, .limitation, figure, .atlas-panel { border: 1px solid var(--line); background: var(--panel); }
+      .stat { padding: 16px; }
+      .stat strong { display: block; margin-bottom: 4px; color: var(--green); font-size: 26px; line-height: 1; }
+      .stat span { color: var(--muted); font-size: 13px; }
+      .method-list, .limitations { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+      .method, .limitation { padding: 17px; }
+      .figure-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 22px; }
+      figure { margin: 0; }
+      figure img { display: block; width: 100%; height: auto; background: #fff; }
+      figcaption { padding: 12px 14px 14px; color: var(--muted); font-size: 13px; }
+      .callout { margin-top: 22px; padding: 18px; border-left: 5px solid var(--accent); background: var(--soft); }
+      .atlas-panel { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr); gap: 20px; align-items: center; margin-top: 24px; padding: 18px; }
+      .button { display: inline-block; margin-top: 8px; padding: 11px 14px; background: var(--ink); color: white; text-decoration: none; }
+      footer { padding: 28px 0 44px; color: var(--muted); font-size: 14px; }
+      @media (max-width: 820px) {
+        .section-grid, .atlas-panel, .figure-grid { grid-template-columns: 1fr; }
+        nav { position: static; }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Unequal Urban Nature in NYC</h1>
-      <p class="subtitle">
-        Linking street-tree condition, observed biodiversity, built-environment pressure, and socioeconomic inequities across New York City census tracts.
-      </p>
+    <div class="page">
+      <header>
+        <p class="eyebrow">Urban Analytics | Final Project</p>
+        <h1>Unequal Urban Nature in NYC</h1>
+        <p class="subtitle">Linking street-tree condition, observed biodiversity, built-environment pressure, and socioeconomic inequities across New York City census tracts.</p>
+        <div class="top-links">
+          <a class="link-card" href="src/atlas/index.html"><strong>Interactive Atlas</strong><span>Explore tract-level co-burden, priority areas, and LISA cluster layers.</span></a>
+          <a class="link-card" href="src/final_analysis.html"><strong>Final Notebook</strong><span>View the exported notebook used to reproduce tables, figures, and map assets.</span></a>
+          <a class="link-card" href="visualizations/revised/figure_composite_coburden_priority.png"><strong>Key Figures</strong><span>Open the composite co-burden and priority tract figure.</span></a>
+          <a class="link-card" href="Final_Report.docx"><strong>Final Report</strong><span>Download the written final report.</span></a>
+        </div>
+      </header>
 
-      <div class="links">
-        <a class="link-card" href="src/atlas/index.html">
-          <strong>Interactive Atlas</strong>
-          <span>Explore tract-level co-burden, priority areas, and LISA cluster layers.</span>
-        </a>
-        <a class="link-card" href="src/final_analysis.html">
-          <strong>Final Notebook</strong>
-          <span>View the exported analysis notebook used to reproduce tables, figures, and map assets.</span>
-        </a>
-        <a class="link-card" href="visualizations/revised/figure_composite_coburden_priority.png">
-          <strong>Final Figures</strong>
-          <span>Open the composite co-burden and priority tract figure.</span>
-        </a>
-        <a class="link-card" href="Final_Report.docx">
-          <strong>Final Report</strong>
-          <span>Download the written final report.</span>
-        </a>
-      </div>
+      <nav aria-label="Page sections">
+        <a href="#introduction">Introduction</a>
+        <a href="#methods">Methods</a>
+        <a href="#results">Results</a>
+        <a href="#limitations">Limitations</a>
+        <a href="#conclusion">Conclusion</a>
+      </nav>
 
-      <p class="meta">Di Li, Jialin Sun, Xiaojing Jin, Chunman Li</p>
-    </main>
+      <main>
+        <section id="introduction">
+          <div class="section-grid">
+            <h2>Introduction</h2>
+            <div>
+              <p class="lead">Street trees provide cooling, stormwater control, air-quality benefits, and everyday environmental amenities, but these benefits are not evenly distributed across New York City.</p>
+              <p>This project asks whether street-tree ecological quality varies systematically across the city, how those patterns relate to socioeconomic vulnerability and built-environment intensity, and where multiple disadvantages overlap. The analysis uses census tracts as the unit of comparison because they support integration with American Community Survey and Social Vulnerability Index data while still capturing meaningful intra-city variation.</p>
+              <div class="stat-grid">
+                <div class="stat"><strong>2,327</strong><span>NYC census tracts integrated in the analytical table</span></div>
+                <div class="stat"><strong>652,045</strong><span>alive street trees spatially matched to tracts</span></div>
+                <div class="stat"><strong>1 m</strong><span>UrbanWatch land-cover raster used for PLAND and fragmentation metrics</span></div>
+                <div class="stat"><strong>4</strong><span>burden dimensions combined in the co-burden index</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="methods">
+          <div class="section-grid">
+            <h2>Methods</h2>
+            <div>
+              <p class="lead">The workflow combines street-tree inventory records, land cover, building morphology, parks, parcel attributes, and socioeconomic vulnerability into a tract-level dataset.</p>
+              <div class="method-list">
+                <div class="method"><h3>Data integration</h3><p>Seven datasets were harmonized by census tract GEOID: NYC 2015 Street Tree Census, UrbanWatch land cover, building footprints, PLUTO, parks properties, ACS 2019, and CDC/ATSDR SVI.</p></div>
+                <div class="method"><h3>Street-tree outcomes</h3><p>Tree Health Index averages Good/Fair/Poor scores, tree density measures trees per square kilometer, and Shannon diversity captures tract-level species richness and evenness.</p></div>
+                <div class="method"><h3>Built and landscape context</h3><p>UrbanWatch PLAND, impervious cover, building height, coverage, density, parks area, and FRAGSTATS-style metrics describe 2D and 3D urban structure.</p></div>
+                <div class="method"><h3>Spatial analysis</h3><p>Global Moran's I tests citywide spatial autocorrelation. Local Moran's I identifies High-High, Low-Low, and spatial outlier clusters for health, density, and diversity.</p></div>
+                <div class="method"><h3>Models</h3><p>OLS and spatial econometric models provide interpretable baselines. Random Forest, CatBoost, XGBoost, permutation importance, and SHAP diagnose predictive structure.</p></div>
+                <div class="method"><h3>Co-burden index</h3><p>Low street-tree quality, high social vulnerability, high built-environment intensity, and high landscape fragmentation are percentile-scaled and averaged to identify top 20% and top 10% priority tracts.</p></div>
+              </div>
+              <div class="callout"><strong>Validation and pipeline checks.</strong> The notebook validates row counts, GEOID uniqueness, missingness, model samples, spatial weights, sensitivity tests, and output-file generation. Co-burden results are checked against SVI-weighted and leave-one-out variants to test whether priority geography depends on a single component.</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="results">
+          <div class="section-grid">
+            <h2>Results</h2>
+            <div>
+              <p class="lead">Street-tree ecological inequality in NYC is multidimensional. Tree supply, species diversity, built intensity, social vulnerability, and canopy fragmentation do not produce the same map, but their overlap reveals clear priority corridors.</p>
+              <ul>
+                <li>Tree health is generally high citywide, but low-health clusters appear in lower Manhattan and parts of south Brooklyn and south Queens.</li>
+                <li>Street tree density has a weak but significant positive relationship with income, while mean building height has a stronger negative association with Tree Health Index.</li>
+                <li>Staten Island has the highest average tree canopy PLAND and lowest impervious surface, while Manhattan has the lowest canopy and highest impervious cover.</li>
+                <li>Global and local spatial autocorrelation show that health, density, and diversity form spatial clusters rather than random tract-by-tract differences.</li>
+                <li>The composite priority map concentrates high co-burden tracts in the Bronx, northern Manhattan, and parts of central Brooklyn.</li>
+              </ul>
+              <div class="figure-grid">
+                <figure><img src="visualizations/revised/figure_composite_coburden_priority.png" alt="Composite co-burden priority map" /><figcaption>Composite co-burden index and priority intervention tracts. The top 20% and top 10% tracts are screening priorities rather than causal rankings.</figcaption></figure>
+                <figure><img src="visualizations/revised/figure_single_burdens_panel.png" alt="Single burden maps" /><figcaption>Single-burden maps separate low street-tree quality, social vulnerability, built-environment intensity, and landscape fragmentation.</figcaption></figure>
+                <figure><img src="visualizations/revised/fig07_lisa_clusters_combined.png" alt="LISA cluster maps" /><figcaption>LISA clusters show local spatial patterns for tree health, street-tree density, and species diversity.</figcaption></figure>
+                <figure><img src="visualizations/revised/figure_ml_performance_validation.png" alt="Machine learning validation chart" /><figcaption>Machine-learning validation compares random splits with borough-structured validation to test spatial transferability.</figcaption></figure>
+              </div>
+              <div class="atlas-panel"><div><h3>Interactive decision-support atlas</h3><p>The atlas lets users switch between single-burden layers, the composite co-burden index, priority tracts, and LISA cluster outputs. It is designed for citywide screening, borough comparison, tract inspection, and field-verification planning.</p></div><div><a class="button" href="src/atlas/index.html">Open Interactive Atlas</a></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="limitations">
+          <div class="section-grid">
+            <h2>Limitations</h2>
+            <div>
+              <p class="lead">The results are decision-support evidence, not a causal proof of why every tract has its observed street-tree condition.</p>
+              <div class="limitations">
+                <div class="limitation"><h3>Temporal mismatch</h3><p>The workflow combines datasets from 2015 to 2020. It captures broad spatial relationships, but not year-by-year ecological change or post-planting trajectories.</p></div>
+                <div class="limitation"><h3>Spatial aggregation</h3><p>Census tracts support socioeconomic integration, but they smooth street-scale variation in tree pits, sidewalks, maintenance, and microclimate. This creates MAUP risk.</p></div>
+                <div class="limitation"><h3>Unobserved mechanisms</h3><p>Soil quality, rooting volume, irrigation, pruning, pest pressure, and maintenance records were not available. These factors likely matter for tree health.</p></div>
+                <div class="limitation"><h3>Street-tree scope</h3><p>The Tree Census measures mapped street trees, not every tree or canopy patch in the city. Street-tree quality and total canopy cover should not be treated as the same outcome.</p></div>
+                <div class="limitation"><h3>Cleaning choices</h3><p>Alive trees were retained, extreme DBH values were capped, sentinel values were recoded to missing, and water-dominant or low-residential tracts were treated carefully to avoid false high-burden classifications.</p></div>
+                <div class="limitation"><h3>Index assumptions</h3><p>The co-burden index uses percentile scaling and equal weighting. Sensitivity tests show robust geography, but different policy priorities could justify different weights.</p></div>
+                <div class="limitation"><h3>Spatial weights</h3><p>LISA and spatial models depend on the selected KNN spatial weights. Cluster labels identify spatial association, not the mechanism causing that association.</p></div>
+                <div class="limitation"><h3>Model interpretation</h3><p>OLS, spatial models, and ML feature importance describe associations and predictive contribution. They should guide hypotheses and planning, not be read as causal estimates.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="conclusion">
+          <div class="section-grid">
+            <h2>Conclusion</h2>
+            <div>
+              <p class="lead">NYC street-tree inequality is best understood as overlapping ecological, social, and morphological pressure rather than a simple question of tree counts.</p>
+              <p>Street Tree Density and Species Diversity are relatively well explained by tract-level land cover, built-environment intensity, and landscape configuration. Tree Health Index is less well explained by these tract-level variables, suggesting that fine-scale maintenance, rooting conditions, and street habitat quality remain important unobserved drivers.</p>
+              <p>High-priority co-burden areas concentrate in parts of the Bronx, northern Manhattan, and central Brooklyn. These tracts should not be interpreted simply as places that need more trees. They are zones where urban forestry investment should combine planting feasibility, tree-pit expansion, structural soils, permeable pavement, canopy connectivity, long-term maintenance, and environmental justice-oriented resource allocation.</p>
+              <div class="callout"><strong>Planning implication.</strong> The co-burden framework and interactive atlas provide a screening tool for prioritizing field verification and coordinated urban forestry interventions. The next step is to connect these tract-level results with site-level surveys and agency maintenance records.</div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>Di Li, Jialin Sun, Chunman Li, Xiaojing Jin. Built as a static GitHub Pages site with an interactive MapLibre and Deck.gl atlas.</footer>
+    </div>
   </body>
 </html>
