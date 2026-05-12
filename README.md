@@ -6,11 +6,12 @@ Unequal urban nature in NYC: linking street-tree condition, observed biodiversit
 
 ## Repository Contents
 
-- `scripts/final_analysis.ipynb`: final analysis notebook. Run all cells to reproduce the analytical tables, figures, and web-map assets from the processed tract-level dataset.
+- `scripts/final_analysis.ipynb`: final analysis notebook. Run all cells to reproduce analytical tables, figures, and web-map assets from the processed tract-level dataset.
+- `scripts/create_interactive_maps.py`: Python script that generates two interactive HTML maps in `visualizations/interactive/`.
 - `src/atlas/`: interactive MapLibre + Deck.gl atlas for the final project.
-- `visualizations/`: exported final figures used by the notebook and project presentation.
-- `Final_Report.docx`: final written report.
-- `data/`: local data folders. Large raw and processed data are intentionally not committed.
+- `visualizations/`: exported static figures and Python-generated interactive maps.
+- `report.pdf` and `Final_Report.docx`: final written report.
+- `data/`: local data folders. Large raw and processed data are intentionally not committed to GitHub.
 
 ## Running the Notebook
 
@@ -33,6 +34,19 @@ scripts/final_analysis.ipynb
 ```
 
 The notebook writes generated tables to `data/revised/`, figures to `visualizations/revised/`, and interactive-map assets to `src/atlas/assets/`.
+
+4. Generate Python-built interactive maps:
+
+```bash
+python scripts/create_interactive_maps.py
+```
+
+This writes:
+
+```text
+visualizations/interactive/co_burden_interactive.html
+visualizations/interactive/lisa_clusters_interactive.html
+```
 
 ## GitHub Pages
 
